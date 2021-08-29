@@ -12,7 +12,7 @@ namespace Extended_BuiltIn_DevTools
     public class DebugModePlugin : BaseUnityPlugin
     {
         public const string GUID = "org.neo.chronoark.debugtools.debugmode";
-        public const string version = "1.0.0";
+        public const string version = "0.1.0";
 
 
         private static readonly Harmony harmony = new Harmony(GUID);
@@ -132,5 +132,7 @@ namespace Extended_BuiltIn_DevTools
                 }
             }
         }
+
+
     }
 }
