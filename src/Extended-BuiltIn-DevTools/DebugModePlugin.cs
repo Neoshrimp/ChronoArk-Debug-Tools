@@ -113,22 +113,28 @@ namespace Extended_BuiltIn_DevTools
         {
             static void Postfix()
             {
-
-                if (Input.GetKeyDown(debugLoadKey.Value) && SaveManager.savemanager.DebugMode)
+                if (SaveManager.savemanager != null)
                 {
-                    UIManager.InstantiateActive(UIManager.inst.DebugLoad);
+                    if (Input.GetKeyDown(debugLoadKey.Value) && SaveManager.savemanager.DebugMode)
+                    {
+                        UIManager.InstantiateActive(UIManager.inst.DebugLoad);
+                    }
+                    if (Input.GetKeyDown(debugSaveKey.Value) && SaveManager.savemanager.DebugMode)
+                    {
+                        try
+                        {
+                            SaveManager.savemanager.ProgressOneSaveDebug();
+                            Debug.Log("Saved!");
+                        }
+                        catch
+                        {
+                            Debug.Log("no save");
+                        }
+                    }
                 }
-                if (Input.GetKeyDown(debugSaveKey.Value) && SaveManager.savemanager.DebugMode)
+                else
                 {
-                    try
-                    {
-                        SaveManager.savemanager.ProgressOneSaveDebug();
-                        Debug.Log("Saved!");
-                    }
-                    catch
-                    {
-                        Debug.Log("no save");
-                    }
+                    Debug.Log("savemanager is null");
                 }
             }
         }
