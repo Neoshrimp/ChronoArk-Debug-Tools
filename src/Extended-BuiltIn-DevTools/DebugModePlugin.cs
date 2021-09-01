@@ -2,7 +2,9 @@
 using BepInEx.Configuration;
 using GameDataEditor;
 using HarmonyLib;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace Extended_BuiltIn_DevTools
@@ -21,10 +23,12 @@ namespace Extended_BuiltIn_DevTools
         private static ConfigEntry<KeyCode> debugSaveKey;
         private static ConfigEntry<bool> enableDebug;
 
-
+        private static BepInEx.Logging.ManualLogSource logger;
 
         void Awake()
         {
+
+            logger = Logger;
 
             debugLoadKey = Config.Bind("Keybinds",
                 "debugLoadKey",
@@ -55,10 +59,10 @@ namespace Extended_BuiltIn_DevTools
         {
             static void Postfix(ref bool ___DebugMode)
             {
-                UnityEngine.Debug.Log("debug mode before: " + ___DebugMode);
+                logger.LogInfo("debug mode before: " + ___DebugMode);
                 if (enableDebug.Value)
                     ___DebugMode = true;
-                UnityEngine.Debug.Log("debug mode after: " + ___DebugMode);
+                logger.LogInfo("debug mode after: " + ___DebugMode);
 
             }
         }
@@ -73,7 +77,7 @@ namespace Extended_BuiltIn_DevTools
                 {
                     // gives skillbooks
                     case "sb1":
-                        UnityEngine.Debug.Log(cheatChat);
+                        logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
                         new List<ItemBase>
@@ -108,6 +112,24 @@ namespace Extended_BuiltIn_DevTools
             }
         }
 
+        [HarmonyPatch(typeof(BattleSystem))]
+        class BattleSystem_Patch
+        {
+            [HarmonyPatch(nameof(BattleSystem.CheatChack))]
+            [HarmonyPostfix]
+            static void CheatChackPostfix(BattleSystem __instance)
+            {
+                string cheatChat = __instance.CheatChat;
+                switch (cheatChat)
+                {
+                    case "fbend": // ends battle instantly but doesn't go through proper end battle code
+                        __instance.CheatEnabled();
+                        __instance.BattleEnd();
+                        break;
+                }
+            }
+        }
+
         [HarmonyPatch(typeof(UIManager), "Update")]
         class UIManager_Patch
         {
@@ -124,17 +146,17 @@ namespace Extended_BuiltIn_DevTools
                         try
                         {
                             SaveManager.savemanager.ProgressOneSaveDebug();
-                            Debug.Log("Saved!");
+                            logger.LogInfo("Saved!");
                         }
                         catch
                         {
-                            Debug.Log("no save");
+                            logger.LogInfo("no save");
                         }
                     }
                 }
                 else
                 {
-                    Debug.Log("savemanager is null");
+                    logger.LogInfo("savemanager is null");
                 }
             }
         }
