@@ -122,10 +122,16 @@ namespace Extended_BuiltIn_DevTools
                 string cheatChat = __instance.CheatChat;
                 switch (cheatChat)
                 {
-                    case "fbend": // ends battle instantly but doesn't go through proper end battle code
+                    case "fbend": // ends battle instantly but doesn't go through proper end of battle code
                         __instance.CheatEnabled();
                         __instance.BattleEnd();
                         break;
+                    case "bend": // better way to end battle but doesn't clear enemies
+                        __instance.CheatEnabled();
+                        __instance.ClearEnabled = true;
+                        __instance.StartCoroutine(typeof(BattleSystem).GetMethod("ClearBattle", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null) as IEnumerator);
+                        break;
+                        
                 }
             }
         }
