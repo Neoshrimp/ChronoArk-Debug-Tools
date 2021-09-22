@@ -56,6 +56,9 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\CAx64_libs\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\CAx64_libs\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugModePlugin.cs" />

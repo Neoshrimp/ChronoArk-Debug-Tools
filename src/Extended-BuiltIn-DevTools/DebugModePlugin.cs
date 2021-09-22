@@ -34,9 +34,9 @@ namespace Extended_BuiltIn_DevTools
                 "debugLoadKey",
                 KeyCode.F6,
                 "Opens debug load interface. Currently doesn't work in main menu (UIManager is not instantiated)");
-            debugSaveKey = Config.Bind("Keybinds", 
-                "debugSaveKey", 
-                KeyCode.F5, 
+            debugSaveKey = Config.Bind("Keybinds",
+                "debugSaveKey",
+                KeyCode.F5,
                 "Debug save. Save only while on stage map. Saves made in battle, ark, menu might not behave as expected.");
 
             enableDebug = Config.Bind("Debug",
@@ -131,7 +131,7 @@ namespace Extended_BuiltIn_DevTools
                         __instance.ClearEnabled = true;
                         __instance.StartCoroutine(typeof(BattleSystem).GetMethod("ClearBattle", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null) as IEnumerator);
                         break;
-                        
+
                 }
             }
         }
@@ -167,6 +167,22 @@ namespace Extended_BuiltIn_DevTools
             }
         }
 
+
+        [HarmonyPatch(typeof(CharStatV3), "Update")]
+        class RemoveManaRestriction
+        {
+            static void Postfix(CharStatV3 __instance)
+            {
+                if (SaveManager.savemanager != null && SaveManager.savemanager.DebugMode)
+                {
+                    if (PlayData.MPUpgradeNum[PlayData.TSavedata.SoulUpgrade.AP] <= PlayData.Soul && BattleSystem.instance == null)
+                    {
+                        __instance.UpgradeButtons[0].interactable = true;
+                        __instance.MPTooltip.enabled = false;
+                    }
+                }
+            }
+        }
 
     }
 }
