@@ -4,4 +4,4 @@ Various tools intended for debugging Chrono Ark. Currently very bare-bones but p
 ### Extended-BuiltIn-DevTools
 Enables built-in debug mode and expands its functionality. Useful for quick testing. Backup save data if you care about stats or meta currency.
 
-Refer to source, StageSystem:CheatChack() and BattleSystem:CheatChack() in decompiled assembly for more information on usage.
+Refer to source, StageSystem.CheatChack() and BattleSystem.CheatChack() in decompiled assembly for more information on usage.
