@@ -32,7 +32,7 @@ namespace Extended_BuiltIn_DevTools
 
             debugLoadKey = Config.Bind("Keybinds",
                 "debugLoadKey",
-                KeyCode.F6,
+                KeyCode.F4,
                 "Opens debug load interface. Currently doesn't work in main menu (UIManager is not instantiated)");
             debugSaveKey = Config.Bind("Keybinds",
                 "debugSaveKey",
