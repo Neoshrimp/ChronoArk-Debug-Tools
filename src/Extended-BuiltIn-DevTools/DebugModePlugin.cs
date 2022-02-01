@@ -22,6 +22,8 @@ namespace Extended_BuiltIn_DevTools
         private static ConfigEntry<KeyCode> debugLoadKey;
         private static ConfigEntry<KeyCode> debugSaveKey;
         private static ConfigEntry<bool> enableDebug;
+        private static ConfigEntry<KeyCode> reloadGdataKey;
+
 
         private static BepInEx.Logging.ManualLogSource logger;
 
@@ -38,6 +40,10 @@ namespace Extended_BuiltIn_DevTools
                 "debugSaveKey",
                 KeyCode.F5,
                 "Debug save. Save only while on stage map. Saves made in battle, ark, menu might not behave as expected.");
+            reloadGdataKey = Config.Bind("Keybinds",
+                "reloadGdataKey",
+                KeyCode.F8,
+                "Reinitializes and reloads gdata json.");
 
             enableDebug = Config.Bind("Debug",
                 "debugEnabled",
@@ -159,6 +165,13 @@ namespace Extended_BuiltIn_DevTools
                             logger.LogInfo("no save");
                         }
                     }
+
+                    if (Input.GetKeyDown(reloadGdataKey.Value) && SaveManager.savemanager.DebugMode)
+                    {
+                        Debug.Log("Reloading gdata");
+                        GDEDataManager.Init("gdata", false);
+                    }
+
                 }
                 else
                 {
