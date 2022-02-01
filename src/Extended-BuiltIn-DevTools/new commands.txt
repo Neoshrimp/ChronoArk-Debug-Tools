@@ -1,0 +1,25 @@
+sb0: 20 regular skillbooks
+sb1: 10 infinite skillbooks, 5 healing 101, 5 rare skillbooks
+sb2: 10 lucy skillbooks
+
+c1: all common equipment
+u1: all uncommon equipment
+r1: rare equipment 1
+r2: rare equipment 2
+un1: unique equipment 1
+un2: unique equipment 2
+l1: legendary equipment 1
+l2: legendary equipment 2
+
+p1: all potions
+s1: all scrolls
+a1: all active items
+re1: relic items 1
+re2: relic items 2
+re3: relic items 3
+
+misc: Herb, Tablet, Small Barrier Machine, Bread, Golden Bread, Golden Apple, Rewinding Gear, Curse of the Sun Moon Stars Shop Edition, Celestial, Relic Pouch, Soul Thurible
+god: 99x2 soulstones, 9999x10 gold
+dd: 20 Dodo's Rabbit Mask
+jump: 5 vitality scrolls, 1 swiftness scroll
+2x: runs game at 2x speed 
