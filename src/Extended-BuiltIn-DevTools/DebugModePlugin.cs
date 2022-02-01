@@ -260,7 +260,7 @@ namespace Extended_BuiltIn_DevTools
                         break;
 
                     //Dodo Masks
-                    case "dd":
+                    case "dodo":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
