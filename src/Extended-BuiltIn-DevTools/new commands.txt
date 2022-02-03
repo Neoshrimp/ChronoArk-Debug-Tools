@@ -20,6 +20,6 @@ re3: relic items 3
 
 misc: Herb, Tablet, Small Barrier Machine, Bread, Golden Bread, Golden Apple, Rewinding Gear, Curse of the Sun Moon Stars Shop Edition, Celestial, Relic Pouch, Soul Thurible
 god: 99x2 soulstones, 9999x10 gold
-dd: 20 Dodo's Rabbit Mask
+dodo: 20 Dodo's Rabbit Mask
 jump: 5 vitality scrolls, 1 swiftness scroll
 2x: runs game at 2x speed 
