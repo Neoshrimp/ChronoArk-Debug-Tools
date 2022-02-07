@@ -239,20 +239,20 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_IronShield),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_EagleEye),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofHunt),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Rapier),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_EndlessScroll),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ThrowingDagger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RoseArmor),
                         });
                         break;
 
-                    //rare equipment 2
+                    //rare equipment
                     case "r2":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Rapier),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_EndlessScroll),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ThrowingDagger),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RoseArmor),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_EnchantedRing),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_VikingsMace),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_WrathfulAxe),
@@ -266,10 +266,6 @@ namespace Extended_BuiltIn_DevTools
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
@@ -367,10 +363,6 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_DolorousStroke),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofAngel),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_MessiahbladesPrototype),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_GasMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Revenger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BlackMoonSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Sword),
                         });
                         break;
 
@@ -381,6 +373,10 @@ namespace Extended_BuiltIn_DevTools
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_GasMask),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Revenger),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BlackMoonSword),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Sword),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Cape),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_HalfMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_FlameShieldGenerator),
