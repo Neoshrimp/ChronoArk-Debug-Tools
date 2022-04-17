@@ -165,6 +165,18 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookLucy),
                         });
                         break;
+                    // all common skillbooks
+                    case "sb3":
+                        __instance.CheatEnabled();
+                        var rewards = new List<ItemBase>();
+
+
+                        PlayData._ALLSKILLLIST.FindAll(s => s.Category.Key == GDEItemKeys.SkillCategory_PublicSkill).ForEach(sd => rewards.Add(ItemBase.GetItem(sd)));
+                        SaveManager.savemanager._NowData.unlockList.PublicSkillKey.ForEach(sk => rewards.Add(ItemBase.GetItem(new GDESkillData(sk))));
+
+                        InventoryManager.Reward(rewards);
+
+                        break;
 
                     //common equipment
                     case "c1":
@@ -614,7 +626,8 @@ namespace Extended_BuiltIn_DevTools
                     case "bend": // better way to end battle but doesn't clear enemies
                         __instance.CheatEnabled();
                         __instance.ClearEnabled = true;
-                        __instance.StartCoroutine(typeof(BattleSystem).GetMethod("ClearBattle", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null) as IEnumerator);
+                        //__instance.StartCoroutine(typeof(BattleSystem).GetMethod("ClearBattle", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null) as IEnumerator);
+                        __instance.StartCoroutine((IEnumerator)AccessTools.Method(typeof(BattleSystem), "ClearBattle").Invoke(__instance, null));
                         break;
 
                 }
