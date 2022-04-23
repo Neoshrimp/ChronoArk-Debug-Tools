@@ -165,6 +165,18 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookLucy),
                         });
                         break;
+                    // all common skillbooks
+                    case "sb3":
+                        __instance.CheatEnabled();
+                        var rewards = new List<ItemBase>();
+
+
+                        PlayData._ALLSKILLLIST.FindAll(s => s.Category.Key == GDEItemKeys.SkillCategory_PublicSkill).ForEach(sd => rewards.Add(ItemBase.GetItem(sd)));
+                        SaveManager.savemanager._NowData.unlockList.PublicSkillKey.ForEach(sk => rewards.Add(ItemBase.GetItem(new GDESkillData(sk))));
+
+                        InventoryManager.Reward(rewards);
+
+                        break;
 
                     //common equipment
                     case "c1":
@@ -239,20 +251,20 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_IronShield),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_EagleEye),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofHunt),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Rapier),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_EndlessScroll),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ThrowingDagger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RoseArmor),
                         });
                         break;
 
-                    //rare equipment 2
+                    //rare equipment
                     case "r2":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Rapier),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_EndlessScroll),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ThrowingDagger),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RoseArmor),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_EnchantedRing),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_VikingsMace),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_WrathfulAxe),
@@ -260,16 +272,12 @@ namespace Extended_BuiltIn_DevTools
                         break;
 
                     //Dodo Masks
-                    case "dd":
+                    case "dodo":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
@@ -367,10 +375,6 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_DolorousStroke),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofAngel),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_MessiahbladesPrototype),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_GasMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Revenger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BlackMoonSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Sword),
                         });
                         break;
 
@@ -381,6 +385,10 @@ namespace Extended_BuiltIn_DevTools
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_GasMask),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Revenger),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BlackMoonSword),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Sword),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Cape),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_HalfMask),
                         ItemBase.GetItem(GDEItemKeys.Item_Equip_FlameShieldGenerator),
@@ -592,9 +600,25 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Misc_Gold, 99990),
                         });
                         break;
+                       
+                    //keys
+                    case "key":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        InventoryManager.Reward(
+                        new List<ItemBase>
+                        {
+                            ItemBase.GetItem(GDEItemKeys.Item_Misc_Item_Key, 99),
+                        });
+                        break;
 
                     //game 2x speed. short form of 'playtest'
                     case "2x":
+                        Time.timeScale = 2f;
+                        break;
+                        
+                    //game 2x speed. short form of 'playtest'
+                    case "x2":
                         Time.timeScale = 2f;
                         break;
                 }
@@ -618,7 +642,8 @@ namespace Extended_BuiltIn_DevTools
                     case "bend": // better way to end battle but doesn't clear enemies
                         __instance.CheatEnabled();
                         __instance.ClearEnabled = true;
-                        __instance.StartCoroutine(typeof(BattleSystem).GetMethod("ClearBattle", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null) as IEnumerator);
+                        //__instance.StartCoroutine(typeof(BattleSystem).GetMethod("ClearBattle", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null) as IEnumerator);
+                        __instance.StartCoroutine((IEnumerator)AccessTools.Method(typeof(BattleSystem), "ClearBattle").Invoke(__instance, null));
                         break;
 
                 }
