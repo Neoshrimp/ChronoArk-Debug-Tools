@@ -614,13 +614,30 @@ namespace Extended_BuiltIn_DevTools
 
                     //game 2x speed. short form of 'playtest'
                     case "2x":
-                        Time.timeScale = 2f;
+                        // clear input buffer
+                        __instance.CheatEnabled();
+                        ToggleTimeScale();
                         break;
                         
                     //game 2x speed. short form of 'playtest'
                     case "x2":
-                        Time.timeScale = 2f;
+                        __instance.CheatEnabled();
+                        ToggleTimeScale();
                         break;
+                }
+            }
+
+            public static void ToggleTimeScale()
+            {
+                if (Time.timeScale < 2f)
+                {
+                    Time.timeScale = 2f;
+                    logger.LogInfo($"timeScale = {Time.timeScale}");
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+                    logger.LogInfo($"timeScale = {Time.timeScale}");
                 }
             }
         }
