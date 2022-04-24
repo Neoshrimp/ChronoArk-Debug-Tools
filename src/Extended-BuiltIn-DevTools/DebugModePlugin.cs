@@ -600,9 +600,25 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Misc_Gold, 99990),
                         });
                         break;
+                       
+                    //keys
+                    case "key":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        InventoryManager.Reward(
+                        new List<ItemBase>
+                        {
+                            ItemBase.GetItem(GDEItemKeys.Item_Misc_Item_Key, 99),
+                        });
+                        break;
 
                     //game 2x speed. short form of 'playtest'
                     case "2x":
+                        Time.timeScale = 2f;
+                        break;
+                        
+                    //game 2x speed. short form of 'playtest'
+                    case "x2":
                         Time.timeScale = 2f;
                         break;
                 }
