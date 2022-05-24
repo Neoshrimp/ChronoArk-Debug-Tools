@@ -2,6 +2,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using GameDataEditor;
 using HarmonyLib;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -694,7 +695,10 @@ namespace Extended_BuiltIn_DevTools
                     if (Input.GetKeyDown(reloadGdataKey.Value) && SaveManager.savemanager.DebugMode)
                     {
                         Debug.Log("Reloading gdata");
-                        GDEDataManager.Init("gdata", false);
+                        var initMethod = AccessTools.Method(typeof(GDEDataManager), nameof(GDEDataManager.Init), new Type[] { typeof(bool) });
+                        initMethod.Invoke(null, new object[] { false });
+                        // method not found exception
+                        // GDEDataManager.Init("gdata", false);
                     }
 
                 }
