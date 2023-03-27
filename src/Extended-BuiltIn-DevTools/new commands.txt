@@ -46,7 +46,7 @@ s2: scroll 2
 a1: active items 1
 a2: active items 2
 
-misc: Herb, Tablet, Small Barrier Generator, Bread, Golden Bread,
+misc: Herb, Tablet, Small Barrier Generator, Key, Bread, Golden Bread,
 Golden Apple, Rewinding Gear, Celestial, Relic Pouch, Ilya's Vodka,
 Relic Display Stand Key, Black Iron Anvil
 
