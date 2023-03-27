@@ -364,3 +364,8 @@ FodyWeavers.xsd
 
 # code testing project
 src/Debug-Playground/
+/src/AddressableTest
+/src/Addressables_patch
+/src/Json-loading-playground
+/src/tfk_hp_test
+/src/random_code

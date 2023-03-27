@@ -10,7 +10,7 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 
-namespace NewExamplePlugin
+namespace AddressablesPatch
 {
     [BepInPlugin(GUID, "Example plugin", version)]
     [BepInProcess("ChronoArk.exe")]
