@@ -1,7 +1,8 @@
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Configuration;
 using GameDataEditor;
 using HarmonyLib;
+using I2.Loc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Extended_BuiltIn_DevTools
 
 
         private static BepInEx.Logging.ManualLogSource logger;
+        public static bool rarelearn = false;
 
         void Awake()
         {
@@ -89,15 +91,7 @@ namespace Extended_BuiltIn_DevTools
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
-                        //skillbooks
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
+                        //skillbook normal
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter),
@@ -164,6 +158,8 @@ namespace Extended_BuiltIn_DevTools
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookLucy),
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookLucy),
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookLucy),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookLucy),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookLucy),
                         });
                         break;
                     // all common skillbooks
@@ -183,92 +179,833 @@ namespace Extended_BuiltIn_DevTools
                     case "c1":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
+
+                        List <ItemBase> reward = new List<ItemBase>();
+                        int count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_GhostBadge),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RoseBadge),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ShieldBadge),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_TargetBadge),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_OldBible),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CubicRing),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Slipper),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_WoodenBat),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_WoodenSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CubicNecklace),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Sunmoonstarcurse),
-                        });
+                            if (item is Item_Equip && item.ItemClassNum == 0)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 16)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "c2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 0)
+                            {
+                                count++;
+                                if (count > 16)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 32)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "c3":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 0)
+                            {
+                                count++;
+                                if (count > 32)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 48)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
                         break;
 
                     //uncommon equipment
                     case "u1":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_SafetyPrayAmulet),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_LuckPrayAmulet),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_LongSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_PrayersHand),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CeremonialGloves),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_NecklaceofLife),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofStupidman),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofBanalman),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofGambler),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofFugitive),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_LeavesBelt),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_SunCape),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CrescentCape),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_LifeStoneRing),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_AmuletofAnger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_AmuletofStability),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Rustydagger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_StarRing),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BastardSword),
-                        });
+                            if (item is Item_Equip && item.ItemClassNum == 1)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 16)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "u2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 1)
+                            {
+                                count++;
+                                if (count > 16)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 32)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "u3":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 1)
+                            {
+                                count++;
+                                if (count > 32)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 48)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
                         break;
 
                     //rare equipment
                     case "r1":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CharginTarge),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Ankh),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Taegeukring),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RabbitMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Bellofsalvation),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RustyHammer),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ForestSword_0),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CrossBrooch),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_SceptreofLife),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofMedia),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofDeath),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BibleRevisedEdition),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofBlood),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_IronShield),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_EagleEye),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofHunt),
-                        });
+                            if (item is Item_Equip && item.ItemClassNum == 2)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 16)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
                         break;
 
-                    //rare equipment
                     case "r2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 2)
+                            {
+                                count++;
+                                if (count > 16)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 32)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "r3":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 2)
+                            {
+                                count++;
+                                if (count > 32)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 48)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //heroic equipment
+                    case "h1":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 3)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 16)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "h2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 3)
+                            {
+                                count++;
+                                if (count > 16)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 32)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "h3":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 3)
+                            {
+                                count++;
+                                if (count > 32)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 48)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "h4":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 3)
+                            {
+                                count++;
+                                if (count > 48)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 64)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "h5":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 3)
+                            {
+                                count++;
+                                if (count > 64)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 80)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //legendary equipment
+                    case "l1":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 4)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 16)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "l2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 4)
+                            {
+                                count++;
+                                if (count > 16)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 32)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "l3":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 4)
+                            {
+                                count++;
+                                if (count > 32)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 48)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "l4":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 4)
+                            {
+                                count++;
+                                if (count > 48)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 64)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "l5":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Equip && item.ItemClassNum == 4)
+                            {
+                                count++;
+                                if (count > 64)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 80)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //relic items
+                    case "re1":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                reward.Add(item);
+                            }
+                            if (count == 16)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //relic items 2
+                    case "re2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 16)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 32)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //relic items 3
+                    case "re3":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 32)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 48)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "re4":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 48)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 64)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "re5":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 64)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 80)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "re6":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 80)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 96)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "re7":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 96)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 112)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "re8":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 112)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 128)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "re9":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Passive)
+                            {
+                                count++;
+                                if (count > 128)
+                                {
+                                    reward.Add(item);
+                                }
+                                //if (count == 144)
+                                //{
+                                //    break;
+                                //}
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //all potions
+                    case "p1":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Potions)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 20)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "p2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Potions)
+                            {
+                                count++;
+                                if (count > 20)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 40)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //all scrolls
+                    case "s1":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Scroll)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 20)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "s2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Scroll)
+                            {
+                                count++;
+                                if (count > 20)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 40)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "a1":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Active)
+                            {
+                                reward.Add(item);
+                                count++;
+                            }
+                            if (count == 20)
+                            {
+                                break;
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    case "a2":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+
+                        reward = new List<ItemBase>();
+                        count = 0;
+                        foreach (ItemBase item in PlayData.ALLITEMLIST)
+                        {
+                            if (item is Item_Active)
+                            {
+                                count++;
+                                if (count > 20)
+                                {
+                                    reward.Add(item);
+                                }
+                                if (count == 40)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        InventoryManager.Reward(reward);
+                        break;
+
+                    //everything else
+                    case "misc":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Rapier),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_EndlessScroll),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ThrowingDagger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RoseArmor),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_EnchantedRing),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_VikingsMace),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_WrathfulAxe),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Herb),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SodaWater),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SmallBarrierMachine),
+                        ItemBase.GetItem(GDEItemKeys.Item_Misc_Item_Key),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Bread),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_GoldenBread),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_GoldenApple),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_TimeRelic),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_ArtifactPouch),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Ilya_PassiveConsume),
+                        ItemBase.GetItem(GDEItemKeys.Item_Misc_BlackironMoru),
+                        ItemBase.GetItem(GDEItemKeys.Item_Misc_ArtifactPlusInven),
+                        });
+                        break;
+
+                    //gold + soulstones
+                    case "god":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        InventoryManager.Reward(
+                        new List<ItemBase>
+                        {
+                        ItemBase.GetItem(GDEItemKeys.Item_Misc_Soul, 198),
+                        ItemBase.GetItem(GDEItemKeys.Item_Misc_Gold, 99990),
                         });
                         break;
 
@@ -298,310 +1035,45 @@ namespace Extended_BuiltIn_DevTools
                         });
                         break;
 
-                    //unique equipment
-                    case "un1":
+                    //Replica
+                    case "rep":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_FoxOrb),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Featheroflife),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_StickofFaith),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_MagicThread),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ArmletofGambler),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Vadzerald),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_DochiHat),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_SweetPotato),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_SweetPotato_0),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_LastStand),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ForbiddenLibram),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Alicesgift),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_FrozenShuriken),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ScalesArmor),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ForestSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Stellarhand),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_GuardsCertificate),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_DarkCross),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_SacredNecklace),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_HighPriestsLegacy),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
+                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Replica),
                         });
                         break;
 
-                    //unique equipment 2
-                    case "un2":
+                    case "star":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RemialPaint),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_TheEquability),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_OrderofSacrifice),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_OrderofValiancy),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_HuntersNose),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ReportersFootprint),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_ThePressure),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_OrderofHonor),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CrescentsReflex),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_OrderofEgis),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BloodyMary),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_PoisonousBottle),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Deadeye),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_VikingsBlood),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_DemonHunter),
-                        });
-                        break;
-
-                    //legendary equipment
-                    case "l1":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_StraightFlush),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BlackSpikedArmor),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_WoodenSword13),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_DarkPrestClothes),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_HeartofIceSpirit),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_AgentSunglass),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Armor),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_CrownofThorns),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_LostofDecedent),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_HolySwordKarsaga),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_HandprintofGrimReaper),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_DevilsHorn),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Arrowofangel),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_DolorousStroke),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_RingofAngel),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_MessiahbladesPrototype),
-                        });
-                        break;
-
-                    //legendary equipment 2
-                    case "l2":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_GasMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Revenger),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_BlackMoonSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Sword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_King_Cape),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_HalfMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_FlameShieldGenerator),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Analyticalscope),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_FlameDarkSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_SweetPotato_1),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_FoxOrb_0),
-                        });
-                        break;
-
-                    //all potions
-                    case "p1":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Fairy),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_heal),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_weak),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_holywater),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Shield),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Mana),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Oblivion),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Enegy),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Rare),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Battle),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Healer),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Tanker),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Target),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Clone),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Cycle),
-                        ItemBase.GetItem(GDEItemKeys.Item_Potions_Potion_Purification),
-                        });
-                        break;
-
-                    //all scrolls
-                    case "s1":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Enchant),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Identify),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Item),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Mapping),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Midas),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Purification),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Quick),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Teleport),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Transfer),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Uncurse),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Vitality),
-                        });
-                        break;
-
-                    //all active items
-                    case "a1":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_GoldenCoin),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_Whetstone),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_MagicCard),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_LunchBox),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_Vaccine),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_DivineSword),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_BlankCard),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_PotLid),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_Megaphone),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_AssassinsTalisman),
-                        });
-                        break;
-
-                    //relic items
-                    case "re1":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_505Error),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_AncientShield),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_BlackMoon),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_blackRabbit),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_BlueRose),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Bookofmoon),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Bookofsun),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_BottleOfDemons),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_BrightShield),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_BronzeMotor),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_ChaosHourglass),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_CheeseCake),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Crossoflight),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_CursedMask),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_DeliciousCarrot),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_EndlessSoul),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_FakeCrown),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_FrozenDebt),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_GolemRelic),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_HipSack),
-                        });
-                        break;
-
-                    //relic items 2
-                    case "re2":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_JokerCard),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_LastFlame),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Librariansjournal),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_LostResearchJournal),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_MagicBerry),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_MagicLamp),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_ManaBattery),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_ManaBlaze),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Memoryfragment),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_MindsEye),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_MistTotem),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_OldHourglass),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_OldRule),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_PotionBag),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_QuickCasting),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_RedBlossoms),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_SecretWreath),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_ShadowOrb),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_SharksFin),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_ShineStone),
-                        });
-                        break;
-
-                    //relic items 3
-                    case "re3":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Sign),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_SixSixSix),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_SkeletonKey),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Spinyblowfish),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_SurgeStone),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_TankRelic),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_ThornStem),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_TimeStorage),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_ToothBottle),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Trailofmadness),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_TwinsRelic),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_Twistedlight),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_WarlockSkull),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_WeatherVane),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_WhiteMoon),
-                        ItemBase.GetItem(GDEItemKeys.Item_Passive_WitchRelic),
-                        });
-                        break;
-
-                    //a ton of vitality scrolls
-                    case "jump":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Vitality),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Vitality),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Vitality),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Vitality),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Vitality),
-                        ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Quick),
-                        });
-                        break;
-
-                    //everything else
-                    case "misc":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Herb),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SodaWater),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SmallBarrierMachine),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Bread),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_GoldenBread),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_GoldenApple),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_TimeRelic),
-                        ItemBase.GetItem(GDEItemKeys.Item_Equip_Sunmoonstarcurse_Quest),
                         ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
-                        ItemBase.GetItem(GDEItemKeys.Item_Consume_ArtifactPouch),
-                        ItemBase.GetItem(GDEItemKeys.Item_Active_ShadowPriest_Thurible),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_Celestial),
                         });
                         break;
 
-                    //gold + soulstones
-                    case "god":
-                        logger.LogInfo(cheatChat);
-                        __instance.CheatEnabled();
-                        InventoryManager.Reward(
-                        new List<ItemBase>
-                        {
-                        ItemBase.GetItem(GDEItemKeys.Item_Misc_Soul, 198),
-                        ItemBase.GetItem(GDEItemKeys.Item_Misc_Gold, 99990),
-                        });
-                        break;
-                       
                     //keys
                     case "key":
                         logger.LogInfo(cheatChat);
@@ -609,21 +1081,151 @@ namespace Extended_BuiltIn_DevTools
                         InventoryManager.Reward(
                         new List<ItemBase>
                         {
-                            ItemBase.GetItem(GDEItemKeys.Item_Misc_Item_Key, 99),
+                            ItemBase.GetItem(GDEItemKeys.Item_Misc_Item_Key, 1),
                         });
                         break;
 
-                    //game 2x speed. short form of 'playtest'
+                    case "shield":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        InventoryManager.Reward(
+                        new List<ItemBase>
+                        {
+                            ItemBase.GetItem(GDEItemKeys.Item_Consume_SmallBarrierMachine, 8),
+                        });
+                        break;
+                    
+                    //Crimson Wilderness Enter Item
+                    case "???":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        InventoryManager.Reward(
+                        new List<ItemBase>
+                        {
+                            ItemBase.GetItem(GDEItemKeys.Item_Misc_RWEnterItem),
+                        });
+                        break;
+
+                    //game 3x speed
                     case "2x":
                         // clear input buffer
                         __instance.CheatEnabled();
                         ToggleTimeScale();
                         break;
-                        
-                    //game 2x speed. short form of 'playtest'
+
+                    //game 3x speed
                     case "x2":
                         __instance.CheatEnabled();
                         ToggleTimeScale();
+                        break;
+
+                    // summoning bosses
+                    case "living":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_MBoss_0"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "cerberus":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Garden_Midboss"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "golem":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_Golem"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "witch":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_Witch"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "dorchi":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_DorchiX"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "joker":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S2_Joker"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "parade":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_MBoss2_0"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "ruby":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S2_MainBoss_Luby"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "time":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S2_TimeEater"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "bomber":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S2_BombClown"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "duel": // cant use godo because "god" already being used
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("CrimsonQueue_GunManBoss"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "reaper":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S3_Reaper"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "karaela":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S3_TheLight"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "pharos":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S3_PharosLeader"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "tfk":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S4_King"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    case "azar":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        FieldSystem.instance.BattleStart(new GDEEnemyQueueData("LBossFirst_Queue"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
+                        break;
+
+                    // allows golden skillbook to show all rare options
+                    case "rare":
+                        logger.LogInfo(cheatChat);
+                        __instance.CheatEnabled();
+                        rarelearn = true;
+                        break;
+
+                    // turn off debug mode
+                    case "dbof":
+                        SaveManager.savemanager.DebugMode = false;
                         break;
                 }
             }
@@ -632,7 +1234,7 @@ namespace Extended_BuiltIn_DevTools
             {
                 if (Time.timeScale < 2f)
                 {
-                    Time.timeScale = 2f;
+                    Time.timeScale = 3f;
                     logger.LogInfo($"timeScale = {Time.timeScale}");
                 }
                 else
@@ -653,17 +1255,27 @@ namespace Extended_BuiltIn_DevTools
                 string cheatChat = __instance.CheatChat;
                 switch (cheatChat)
                 {
-                    case "fbend": // ends battle instantly but doesn't go through proper end of battle code
+                    case "asdf": // ends battle instantly but doesn't go through proper end of battle code
                         __instance.CheatEnabled();
                         __instance.BattleEnd();
                         break;
-                    case "bend": // better way to end battle but doesn't clear enemies
+                    case "df": // combines "turn" and "draw" commands
                         __instance.CheatEnabled();
-                        __instance.ClearEnabled = true;
-                        //__instance.StartCoroutine(typeof(BattleSystem).GetMethod("ClearBattle", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(__instance, null) as IEnumerator);
-                        __instance.StartCoroutine((IEnumerator)AccessTools.Method(typeof(BattleSystem), "ClearBattle").Invoke(__instance, null));
+                        for (int j = 0; j < __instance.AllyTeam.Skills.Count; j++)
+                        {
+                            __instance.AllyTeam.Skills[j].Delete(false);
+                            j--;
+                        }
+                        __instance.AllyTeam.Draw(7);
+                        foreach (BattleAlly battleAlly2 in __instance.AllyList)
+                        {
+                            battleAlly2.ActionCount = 1;
+                            battleAlly2.Overload = 0;
+                        }
+                        __instance.AllyTeam.AP = __instance.AllyTeam.MAXAP;
+                        __instance.ActWindow.Window.GetSkillData(__instance.AllyTeam);
+                        __instance.AllyTeam.DiscardCount = 1;
                         break;
-
                 }
             }
         }
@@ -697,8 +1309,6 @@ namespace Extended_BuiltIn_DevTools
                         Debug.Log("Reloading gdata");
                         var initMethod = AccessTools.Method(typeof(GDEDataManager), nameof(GDEDataManager.Init), new Type[] { typeof(bool) });
                         initMethod.Invoke(null, new object[] { false });
-                        // method not found exception
-                        // GDEDataManager.Init("gdata", false);
                     }
 
                 }
@@ -709,22 +1319,128 @@ namespace Extended_BuiltIn_DevTools
             }
         }
 
-
-        [HarmonyPatch(typeof(CharStatV3), "Update")]
-        class RemoveManaRestriction
+        // Start Ark at 3x speed
+        [HarmonyPatch(typeof(ArkCode), "Start")]
+        class TimeScale2xPatch
         {
-            static void Postfix(CharStatV3 __instance)
+            static void Postfix()
             {
-                if (SaveManager.savemanager != null && SaveManager.savemanager.DebugMode)
-                {
-                    if (PlayData.MPUpgradeNum[PlayData.TSavedata.SoulUpgrade.AP] <= PlayData.Soul && BattleSystem.instance == null)
-                    {
-                        __instance.UpgradeButtons[0].interactable = true;
-                        __instance.MPTooltip.enabled = false;
-                    }
-                }
+                Time.timeScale = 3f;
+                //Debug.Log("Sonic Speed");
             }
         }
+
+        // Golden Skillbook show all options
+        [HarmonyPatch(typeof(UseItem.SkillBookCharacter_Rare), "Use")]
+        class RemoveManaRestriction
+        {
+            [HarmonyPrefix]
+            static bool Prefix(UseItem.SkillBookCharacter_Rare __instance, ref bool __result)
+            {
+                if (rarelearn)
+                {
+                    // Can learn infinite rare
+                    PlayData.TSavedata.SpRule = new SpecialRule();
+                    PlayData.TSavedata.SpRule.RuleChange.CharacterRareSkillInfinityGet = true;
+
+                    List<Skill> list = new List<Skill>();
+                    List<BattleAlly> battleallys = PlayData.Battleallys;
+                    BattleTeam tempBattleTeam = PlayData.TempBattleTeam;
+                    for (int i = 0; i < PlayData.TSavedata.Party.Count; i++)
+                    {
+                        bool flag = false;
+                        if (PlayData.TSavedata.SpRule == null || !PlayData.TSavedata.SpRule.RuleChange.CharacterRareSkillInfinityGet)
+                        {
+                            using (List<CharInfoSkillData>.Enumerator enumerator = PlayData.TSavedata.Party[i].SkillDatas.GetEnumerator())
+                            {
+                                while (enumerator.MoveNext())
+                                {
+                                    if (enumerator.Current.Skill.Rare)
+                                    {
+                                        flag = true;
+                                    }
+                                }
+                            }
+                            if (PlayData.TSavedata.Party[i].BasicSkill.Rare)
+                            {
+                                flag = true;
+                            }
+                        }
+                        if (!flag)
+                        {
+                            // Changed Here
+                            List<GDESkillData> gdeskillData = PlayData.GetMySkills(PlayData.TSavedata.Party[i].KeyData, true);
+                            if (gdeskillData != null)
+                            {
+                                foreach (GDESkillData skill in gdeskillData)
+                                {
+                                    list.Add(Skill.TempSkill(skill.KeyID, battleallys[i], tempBattleTeam));
+                                }
+                            }
+                        }
+                    }
+                    if (list.Count == 0)
+                    {
+                        EffectView.SimpleTextout(FieldSystem.instance.TopWindow.transform, ScriptLocalization.System.CantRareSkill, 1f, false, 1f);
+                        __result = false;
+                    }
+                    foreach (Skill skill in list)
+                    {
+                        if (!SaveManager.IsUnlock(skill.MySkill.KeyID, SaveManager.NowData.unlockList.SkillPreView))
+                        {
+                            SaveManager.NowData.unlockList.SkillPreView.Add(skill.MySkill.KeyID);
+                        }
+                    }
+                    PlayData.TSavedata.UseItemKeys.Add(GDEItemKeys.Item_Consume_SkillBookCharacter_Rare);
+                    FieldSystem.DelayInput(BattleSystem.I_OtherSkillSelect(list, new SkillButton.SkillClickDel(__instance.SkillAdd), ScriptLocalization.System_Item.SkillAdd, false, true, true, true, true));
+                    __result = true;
+                    return false;
+                }
+                else return true;
+            }
+        }
+
+
+        //[HarmonyPatch(typeof(CharStatV3), "Update")]
+        //class RemoveManaRestriction
+        //{
+        //    static void Postfix(CharStatV3 __instance)
+        //    {
+        //        if (SaveManager.savemanager != null && SaveManager.savemanager.DebugMode)
+        //        {
+        //            if (PlayData.MPUpgradeNum[PlayData.TSavedata.SoulUpgrade.AP] <= PlayData.Soul && BattleSystem.instance == null)
+        //            {
+        //                __instance.UpgradeButtons[0].interactable = true;
+        //                __instance.MPTooltip.enabled = false;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //[HarmonyPatch(typeof(WaitButton))]
+        //class WaitDisable_Patch
+        //{
+        //    [HarmonyPatch(nameof(WaitButton.WaitAct))]
+        //    [HarmonyPrefix]
+        //    static bool Prefix(BattleSystem __instance)
+        //    {
+        //        if (BattleSystem.instance.ActWindow.On && BattleSystem.instance.AllyTeam.WaitCount >= 1)
+        //        {
+        //            BattleSystem.instance.AllyTeam.WaitCount--;
+        //            BattleSystem.instance.AllyTeam.TurnUseWaitNum++;
+        //            BattleSystem.instance.AllyTeam.TurnActionNum++;
+        //            foreach (IP_WaitButton ip_WaitButton in BattleSystem.instance.IReturn<IP_WaitButton>())
+        //            {
+        //                if (ip_WaitButton != null)
+        //                {
+        //                    ip_WaitButton.UseWaitButton();
+        //                }
+        //            }
+        //            BattleSystem.instance.StartCoroutine(BattleSystem.instance.EnemyTurn(false));
+        //        }
+        //        return false;
+        //    }
+        //}
 
     }
 }
