@@ -50,7 +50,7 @@ misc: Herb, Tablet, Small Barrier Generator, Key, Bread, Golden Bread,
 Golden Apple, Rewinding Gear, Celestial, Relic Pouch, Ilya's Vodka,
 Relic Display Stand Key, Black Iron Anvil
 
-god: 198 Soulstones + 99990 Gold
+gg: 198 Soulstones + 99990 Gold
 dodo: 16 Dodo's Rabbit Mask
 rep: 10 Replica
 star: 10 Celestial
@@ -70,7 +70,7 @@ parade: summon Parade Tank
 ruby: summon Ruby & Sapphire
 time: summon Time Eater
 bomber: summon Bomber Clown
-duel: summon Duelist Godo
+godo: summon Duelist Godo
 reaper: summon Reaper
 karaela: summon Sacred Karaela
 pharos: summon Pharos Leader

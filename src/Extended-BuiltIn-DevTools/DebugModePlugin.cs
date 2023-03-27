@@ -72,7 +72,6 @@ namespace Extended_BuiltIn_DevTools
                 if (enableDebug.Value)
                     ___DebugMode = true;
                 logger.LogInfo("debug mode after: " + ___DebugMode);
-
             }
         }
 
@@ -998,7 +997,7 @@ namespace Extended_BuiltIn_DevTools
                         break;
 
                     //gold + soulstones
-                    case "god":
+                    case "gg":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         InventoryManager.Reward(
@@ -1180,7 +1179,7 @@ namespace Extended_BuiltIn_DevTools
                         FieldSystem.instance.BattleStart(new GDEEnemyQueueData("Queue_S2_BombClown"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
                         break;
 
-                    case "duel": // cant use godo because "god" already being used
+                    case "godo":
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         FieldSystem.instance.BattleStart(new GDEEnemyQueueData("CrimsonQueue_GunManBoss"), StageSystem.instance.StageData.BattleMap.Key, false, false, "", "", false);
