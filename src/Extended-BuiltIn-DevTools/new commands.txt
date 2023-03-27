@@ -1,25 +1,87 @@
-sb0: 20 regular skillbooks
-sb1: 10 infinite skillbooks, 5 healing 101, 5 rare skillbooks
-sb2: 10 lucy skillbooks
+[Field Commands]
 
-c1: all common equipment
-u1: all uncommon equipment
+sb0: 12 Skill Book
+sb1: 10 Infinite Skill Book, 5 Healing 101, 5 Golden Skill Book
+sb2: 12 Mysterious Skill Book
+sb3: All Common Skill Books
+
+Some of the below commands may not give any items.
+It is redundancy for future additions.
+Seperated by 16 items each.
+
+c1: common equipment 1
+c2: common equipment 2
+c3: common equipment 3
+u1: uncommon equipment 1
+u2: uncommon equipment 2
+u3: uncommon equipment 3
 r1: rare equipment 1
 r2: rare equipment 2
-un1: unique equipment 1
-un2: unique equipment 2
+r3: rare equipment 3
+h1: heroic equipment 1
+h2: heroic equipment 2
+h3: heroic equipment 3
+h4: heroic equipment 4
+h5: heroic equipment 5
 l1: legendary equipment 1
 l2: legendary equipment 2
+l3: legendary equipment 3
+l4: legendary equipment 4
+l5: legendary equipment 5
 
-p1: all potions
-s1: all scrolls
-a1: all active items
-re1: relic items 1
-re2: relic items 2
-re3: relic items 3
+re1: relics 1
+re2: relics 2
+re3: relics 3
+re4: relics 4
+re5: relics 5
+re6: relics 6
+re7: relics 7
+re8: relics 8
+re9: relics 9
 
-misc: Herb, Tablet, Small Barrier Machine, Bread, Golden Bread, Golden Apple, Rewinding Gear, Curse of the Sun Moon Stars Shop Edition, Celestial, Relic Pouch, Soul Thurible
-god: 99x2 soulstones, 9999x10 gold
-dodo: 20 Dodo's Rabbit Mask
-jump: 5 vitality scrolls, 1 swiftness scroll
-2x: runs game at 2x speed 
+p1: potion 1
+p2: potion 2
+s1: scroll 1
+s2: scroll 2
+a1: active items 1
+a2: active items 2
+
+misc: Herb, Tablet, Small Barrier Generator, Key, Bread, Golden Bread,
+Golden Apple, Rewinding Gear, Celestial, Relic Pouch, Ilya's Vodka,
+Relic Display Stand Key, Black Iron Anvil
+
+gg: 198 Soulstones + 99990 Gold
+dodo: 16 Dodo's Rabbit Mask
+rep: 10 Replica
+star: 10 Celestial
+key: 1 Key
+shield: 8 Small Barrier Generator
+???: Gain ???
+2x: Run game at 3x speed
+x2: Run game at 3x speed
+
+living: summon Living Armor
+cerberus: summon Cerberus
+golem: summon Golem
+witch: summon Witch
+dorchi: summon Sir Dorchi
+joker: summon Joker
+parade: summon Parade Tank
+ruby: summon Ruby & Sapphire
+time: summon Time Eater
+bomber: summon Bomber Clown
+godo: summon Duelist Godo
+reaper: summon Reaper
+karaela: summon Sacred Karaela
+pharos: summon Pharos Leader
+tfk: summon The Forgotten King
+azar: summon Azar
+
+rare: allows party to learn unlimited rare skills, golden skillbooks now show all possible rares
+dbof: turn off debug mode (need to restart game to turn back on)
+
+[Battle Commands]
+
+asdf: ends battle instantly
+df: Fully restore mana, standby, exchange. Remove all overload.
+Discard all skills in hand and draw 7 skills.
