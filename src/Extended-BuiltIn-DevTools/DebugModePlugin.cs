@@ -6,6 +6,7 @@ using I2.Loc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
@@ -901,6 +902,18 @@ namespace Extended_BuiltIn_DevTools
                                 break;
                             }
                         }
+                        // Item_Scroll contains 0 items now for some reason, emergency fix
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Uncurse));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Enchant));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Identify));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Item));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Mapping));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Midas));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Purification));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Quick));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Teleport));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Transfer));
+                        reward.Add(ItemBase.GetItem(GDEItemKeys.Item_Scroll_Scroll_Vitality));
                         InventoryManager.Reward(reward);
                         break;
 
@@ -1220,6 +1233,13 @@ namespace Extended_BuiltIn_DevTools
                         logger.LogInfo(cheatChat);
                         __instance.CheatEnabled();
                         rarelearn = true;
+                        InventoryManager.Reward(
+                        new List<ItemBase>
+                        {
+                        //red skillbook
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter_Rare),
+                        ItemBase.GetItem(GDEItemKeys.Item_Consume_SkillBookCharacter_Rare),
+                        });
                         break;
 
                     // turn off debug mode
@@ -1275,6 +1295,17 @@ namespace Extended_BuiltIn_DevTools
                         __instance.ActWindow.Window.GetSkillData(__instance.AllyTeam);
                         __instance.AllyTeam.DiscardCount = 1;
                         break;
+                    case "die": // set enemy hp to 1
+                        __instance.CheatEnabled();
+                        using (List<BattleEnemy>.Enumerator enumerator2 = __instance.EnemyList.GetEnumerator())
+                        {
+                            while (enumerator2.MoveNext())
+                            {
+                                BattleEnemy battleEnemy5 = enumerator2.Current;
+                                battleEnemy5.Info.Hp = 1;
+                            }
+                            return;
+                        }
                 }
             }
         }
@@ -1331,7 +1362,7 @@ namespace Extended_BuiltIn_DevTools
 
         // Golden Skillbook show all options
         [HarmonyPatch(typeof(UseItem.SkillBookCharacter_Rare), "Use")]
-        class RemoveManaRestriction
+        class RareOptions
         {
             [HarmonyPrefix]
             static bool Prefix(UseItem.SkillBookCharacter_Rare __instance, ref bool __result)
@@ -1368,12 +1399,13 @@ namespace Extended_BuiltIn_DevTools
                         if (!flag)
                         {
                             // Changed Here
-                            List<GDESkillData> gdeskillData = PlayData.GetMySkills(PlayData.TSavedata.Party[i].KeyData, true);
+                            List<GDESkillData> gdeskillData = PlayData.GetMySkills(PlayData.TSavedata.Party[i].KeyData, true).GroupBy(x => x.KeyID).Select(x => x.First()).ToList();
                             if (gdeskillData != null)
                             {
                                 foreach (GDESkillData skill in gdeskillData)
                                 {
                                     list.Add(Skill.TempSkill(skill.KeyID, battleallys[i], tempBattleTeam));
+                                    Debug.Log(skill.Name);
                                 }
                             }
                         }
