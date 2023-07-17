@@ -4,10 +4,8 @@ using GameDataEditor;
 using HarmonyLib;
 using I2.Loc;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 namespace Extended_BuiltIn_DevTools
@@ -25,6 +23,7 @@ namespace Extended_BuiltIn_DevTools
         private static ConfigEntry<KeyCode> debugLoadKey;
         private static ConfigEntry<KeyCode> debugSaveKey;
         private static ConfigEntry<bool> enableDebug;
+        private static ConfigEntry<bool> enableSpeedup;
         private static ConfigEntry<KeyCode> reloadGdataKey;
 
 
@@ -54,6 +53,11 @@ namespace Extended_BuiltIn_DevTools
                 true,
                 "enables/disables debug mod");
 
+            enableSpeedup = Config.Bind("Debug",
+                "speedupEnabled",
+                true,
+                "game starts at 3x speed when entering Ark");
+
             harmony.PatchAll();
         }
         void OnDestroy()
@@ -64,15 +68,35 @@ namespace Extended_BuiltIn_DevTools
 
 
         //enable in-game developer debug mode
-        [HarmonyPatch(typeof(SaveManager), "Awake")]
-        class Debug_mode_Enable_Patch
+        //[HarmonyPatch(typeof(SaveManager), "Awake")]
+        //class Debug_mode_Enable_Patch
+        //{
+        //    static void Postfix(ref bool ___DebugMode)
+        //    {
+        //        logger.LogInfo("debug mode before: " + ___DebugMode);
+        //        if (enableDebug.Value)
+        //            ___DebugMode = true;
+        //        logger.LogInfo("debug mode after: " + ___DebugMode);
+        //    }
+        //}
+
+        //// Ark Start
+        [HarmonyPatch(typeof(ArkCode), "Start")]
+        class TimeScale2xPatch
         {
-            static void Postfix(ref bool ___DebugMode)
+            static void Postfix()
             {
-                logger.LogInfo("debug mode before: " + ___DebugMode);
                 if (enableDebug.Value)
-                    ___DebugMode = true;
-                logger.LogInfo("debug mode after: " + ___DebugMode);
+                {
+                    SaveManager.savemanager.DebugMode = true;
+                    Debug.Log("Debug On");
+                }
+
+                if (enableSpeedup.Value)
+                {
+                    Time.timeScale = 3f;
+                    Debug.Log("Speedup On");
+                }
             }
         }
 
@@ -1346,17 +1370,6 @@ namespace Extended_BuiltIn_DevTools
                 {
                     logger.LogInfo("savemanager is null");
                 }
-            }
-        }
-
-        // Start Ark at 3x speed
-        [HarmonyPatch(typeof(ArkCode), "Start")]
-        class TimeScale2xPatch
-        {
-            static void Postfix()
-            {
-                Time.timeScale = 3f;
-                //Debug.Log("Sonic Speed");
             }
         }
 
