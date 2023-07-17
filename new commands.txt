@@ -83,5 +83,5 @@ dbof: turn off debug mode (need to restart game to turn back on)
 [Battle Commands]
 
 asdf: ends battle instantly
-df: Fully restore mana, standby, exchange. Remove all overload.
-Discard all skills in hand and draw 7 skills.
+df: Fully restore mana, standby, exchange. Remove all overload. Discard all skills in hand and draw 7 skills.
+die: Set all enemies' HP to 1
