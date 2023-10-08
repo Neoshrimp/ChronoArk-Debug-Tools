@@ -2,7 +2,7 @@
 
 sb0: 12 Skill Book
 sb1: 10 Infinite Skill Book, 5 Healing 101, 5 Golden Skill Book
-sb2: 12 Mysterious Skill Book
+sb2: 5 Mysterious Skill Book, 5 Transcendent Tome
 sb3: All Common Skill Books
 
 Some of the below commands may not give any items.
@@ -48,7 +48,7 @@ a2: active items 2
 
 misc: Herb, Tablet, Small Barrier Generator, Key, Bread, Golden Bread,
 Golden Apple, Rewinding Gear, Celestial, Relic Pouch, Ilya's Vodka,
-Relic Display Stand Key, Black Iron Anvil
+Relic Display Stand Key, Black Iron Anvil, Bombs Away! Skillbook, Dummy Data
 
 gg: 198 Soulstones + 99990 Gold
 dodo: 16 Dodo's Rabbit Mask
@@ -56,6 +56,7 @@ rep: 10 Replica
 star: 10 Celestial
 key: 1 Key
 shield: 8 Small Barrier Generator
+gift: 10 Box of Friendship
 ???: Gain ???
 2x: Run game at 3x speed
 x2: Run game at 3x speed
