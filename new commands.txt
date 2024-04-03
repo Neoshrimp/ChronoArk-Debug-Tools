@@ -58,6 +58,7 @@ key: 1 Key
 shield: 8 Small Barrier Generator
 gift: 10 Box of Friendship
 ???: Gain ???
+random: 1 Lock & 5 Dice
 2x: Run game at 3x speed
 x2: Run game at 3x speed
 
