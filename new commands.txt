@@ -1,7 +1,7 @@
 [Field Commands]
 
 sb0: 12 Skill Book
-sb1: 10 Infinite Skill Book, 5 Healing 101, 5 Golden Skill Book
+sb1: 10 Infinite Skill Book, 5 Healing 101, 5 Golden Skill Book (allows healing 101 to be used infinitely on any investigator)
 sb2: 5 Mysterious Skill Book, 5 Transcendent Tome
 sb3: All Common Skill Books
 
@@ -78,6 +78,7 @@ karaela: summon Sacred Karaela
 pharos: summon Pharos Leader
 tfk: summon The Forgotten King
 azar: summon Azar
+shira: summon Shiranui
 
 rare: allows party to learn unlimited rare skills, golden skillbooks now show all possible rares
 dbof: turn off debug mode (need to restart game to turn back on)
